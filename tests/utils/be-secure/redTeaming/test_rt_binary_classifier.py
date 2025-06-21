@@ -10,7 +10,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, Conv2D
 
 # Add the correct path to import the module
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../utils/be-secure/redTeaming'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../../../utils/be-secure/redTeaming'))
 
 # Import the functions to test
 from rt_binary_classifier import (
@@ -23,6 +23,17 @@ from rt_binary_classifier import (
     save_results,
     visualize_results
 )
+# If the above import still fails, try relative import:
+# from .rt_binary_classifier import (
+#     load_classifier_model,
+#     prepare_data,
+#     create_art_classifier,
+#     ModelWrapper,
+#     run_attack,
+#     get_attack_configurations,
+#     save_results,
+#     visualize_results
+# )
 
 class TestLoadClassifierModel:
     """Test cases for load_classifier_model function."""
