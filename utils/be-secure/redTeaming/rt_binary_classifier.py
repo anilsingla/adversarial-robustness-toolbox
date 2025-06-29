@@ -75,16 +75,21 @@ def prepare_data(num_samples=100, binary_classes=None):
     print(f"Sample shape: {x_sample.shape}")
     return x_sample, y_sample_cat, y_sample_labels
 
+from tensorflow.keras.losses import CategoricalCrossentropy
+
 def create_art_classifier(model):
     """Create ART classifier using TensorFlowV2Classifier."""
     try:
         # Re-enable eager execution for compatibility
         tf.compat.v1.enable_eager_execution()
-        
+
+        loss_object = CategoricalCrossentropy()
+
         classifier = TensorFlowV2Classifier(
             model=model,
             nb_classes=model.output_shape[-1],
             input_shape=model.input_shape[1:],
+            loss_object=loss_object,
             clip_values=(0.0, 1.0)
         )
         print("ART TensorFlowV2Classifier created successfully")
